@@ -13,6 +13,11 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	def logout
+		session[:user_id] = nil
+		redirect_to "/"
+	end
+
 	private
 	def session_params
 		params.require(:session).permit(:username, :password)
