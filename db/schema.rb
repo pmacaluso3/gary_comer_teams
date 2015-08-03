@@ -17,25 +17,19 @@ ActiveRecord::Schema.define(version: 20150803155347) do
   enable_extension "plpgsql"
 
   create_table "students", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.decimal  "gpa",         precision: 8, scale: 2
-    t.integer  "detentions",                          default: 0
-    t.integer  "grade_level"
-    t.string   "gender"
-    t.string   "student_id"
-    t.string   "misc",                                default: ""
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.decimal "gpa",        precision: 8, scale: 2
+    t.integer "detentions",                         default: 0
+    t.string  "misc",                               default: ""
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.boolean  "admin",           default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "username"
+    t.string  "password_digest"
+    t.boolean "admin",           default: false
+    t.string  "code"
   end
 
 end

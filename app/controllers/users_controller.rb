@@ -7,11 +7,10 @@ class UsersController < ApplicationController
 
 	# This will later be the method to show all teachers' teams
 	def index
-		redirect_to "/sessions/create"
+		redirect_to "/sessions/new"
 	end
 
 	def create
-		puts "******************* #{params.inspect}"
 		if params[:user][:code] != "teacher code"
 			@errors = "Incorrect teacher code"
 			render "/sessions/new"
@@ -21,7 +20,10 @@ class UsersController < ApplicationController
 				session[:user_id] = @user.id
 				redirect_to "/users/#{@user.id}"
 			else
-				@errors = @user.errors
+				@errors = []
+				@user.errors.messages.each do |field, message|
+					@errors << "#{field.capitalize} #{message[0]}."
+				end
 				render "/sessions/new"
 			end
 		end

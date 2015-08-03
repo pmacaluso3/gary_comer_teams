@@ -1,10 +1,18 @@
 <h1>
 	Welcome!
 </h1>
-<% if @errors %> 
-<h3>
-	<%= @errors %>
-</h3>
+<% if @errors %>
+	<ul>
+		<% if @errors.class == Array %>
+			<% @errors.each do |error| %>
+				<li><%= error %></li>
+			<% end %>
+		<% else %>
+			<li>
+				<%= @errors %>
+			</li>
+		<% end %>
+	</ul>
 <% end %>
 <h3>
 	Login
@@ -21,7 +29,7 @@
 <%= form_for :user, url: users_path do |f| %>
 	<%= f.text_field :username, placeholder: "Username" %>
 	<%= f.password_field :password, placeholder: "Password" %>
-	<%= f.text_field :code, placeholder: "Teacher Code" %>
+	<%= f.password_field :code, placeholder: "Teacher Code" %>
 	<%= f.submit "Signup" %>
 <% end %>
 
