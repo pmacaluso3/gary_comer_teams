@@ -6,7 +6,11 @@ class Student < ActiveRecord::Base
 	validates :student_id, {presence:true, uniqueness: true}
 
 	def advisor
-		self.user.last_name
+		if self.user
+			self.user.last_name
+		else
+			false
+		end
 	end
 
 	def advisor=(new_advisor_last)

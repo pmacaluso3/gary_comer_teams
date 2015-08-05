@@ -1,5 +1,6 @@
-Here yo kids
-
+<h2>
+	All students
+</h2>
 
 <table>
 	<tr>
@@ -11,19 +12,29 @@ Here yo kids
 		<th>Detention Count</th>
 		<th>GPA</th>
 		<th>Advisor</th>
-		<th>Something Else</th>
+		<% admin? do %>
+			<th>Unassign from Advisor</th>
+		<% end %>
 	</tr>
 	<% @students.each do |student| %>
 		<tr>
-			<th><%= link_to student.first, student_path(student) %></th>
-			<th><%= student.last %></th>
-			<th><%= student.student_id %></th>
-			<th><%= student.grade_level %></th>
-			<th><%= student.gender %></th>
-			<th><%= student.detention_count %></th>
-			<th><%= student.gpa %></th>
-			<th><%= student.advisor %></th>
-			<th>Something Else</th>
+			<td><%= link_to student.first, student_path(student) %></td>
+			<td><%= student.last %></td>
+			<td><%= student.student_id %></td>
+			<td><%= student.grade_level %></td>
+			<td><%= student.gender %></td>
+			<td><%= student.detention_count %></td>
+			<td><%= student.gpa %></td>
+			<td>
+				<% if student.advisor %>
+					<%= student.advisor %>
+				<% else %>
+					<a href="/students/<%= student.id %>/assign">Add to my team</a>				
+				<% end %>
+			</td>
+			<% admin? do %>
+				<td><a href="/students/<%= student.id %>/unassign">Unassign</a></td>
+			<% end %>
 		</tr>
 	<% end %>
 </table>
