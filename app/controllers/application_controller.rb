@@ -4,10 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def logged_in?
-  	if session[:user_id]
+  	if session[:user_id] && User.find_by(id: session[:user_id])
   		yield
   	else
-  		redirect_to '/sessions/new'
+  		render '/sessions/new'
   	end
+  end
+
+  def admin?
+    puts "********************************** #{User.find_by(id:session[:user_id]).admin}"
+    if session[:user_id] && User.find_by(id:session[:user_id]).admin
+      yield
+    else
+      redirect_to '/sessions/new'
+    end
   end
 end

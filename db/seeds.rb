@@ -1,1 +1,1 @@
-User.create(username: "Zarah", password: "password")
+User.create(username: "Zarah", password: "password", admin: true)
