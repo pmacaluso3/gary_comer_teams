@@ -2,4 +2,10 @@
 	Add new students
 </h1>
 
-<input type="file">
+
+
+<form action="/students" method="post">
+	<input type="file" name="students[students]">
+	<input type="hidden" id="new_students_token" name="authenticity_token">
+	<input type="submit">
+</form>
