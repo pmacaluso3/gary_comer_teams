@@ -1,9 +1,8 @@
 class SessionsController < ApplicationController
 	def new
-	end
-
-	def index
-		redirect_to "/sessions/new"
+		logged_in? do
+			redirect_to "/users/#{session[:user_id]}"
+		end
 	end
 
 	def create
@@ -19,7 +18,7 @@ class SessionsController < ApplicationController
 
 	def logout
 		session[:user_id] = nil
-		redirect_to "/"
+		redirect_to "/sessions/new"
 	end
 
 	private
