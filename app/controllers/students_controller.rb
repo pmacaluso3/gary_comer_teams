@@ -38,6 +38,8 @@ class StudentsController < ApplicationController
 				misc_hash[pair[0]] = pair[1]
 			end
 
+			puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #{this_student.first}'s misc_hash is #{misc_hash.inspect}"
+
 			hash.each do |k, v|
 				if this_student.respond_to?(k.downcase)
 					m = this_student.method("#{k.downcase}=")
@@ -52,7 +54,7 @@ class StudentsController < ApplicationController
 				misc_string += "#{k}:#{v},"
 			end
 
-			this_student.misc += misc_string
+			this_student.misc = misc_string
 			this_student.save
 		end
 
