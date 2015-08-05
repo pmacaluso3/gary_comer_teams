@@ -33,7 +33,9 @@
 				<% end %>
 			</td>
 			<% admin? do %>
-				<td><a href="/students/<%= student.id %>/unassign">Unassign</a></td>
+				<% if student.advisor %>
+					<td><a href="/students/<%= student.id %>/unassign">Unassign</a></td>
+				<% end %>
 			<% end %>
 		</tr>
 	<% end %>
