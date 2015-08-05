@@ -1,5 +1,29 @@
 Here yo kids
 
-<% @students.each do |student| %>
-	<%= student.inspect %>
-<% end %>
+
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Student ID</th>
+		<th>Grade Level</th>
+		<th>Gender</th>
+		<th>Detention Count</th>
+		<th>GPA</th>
+		<th>Advisor</th>
+		<th>Something Else</th>
+	</tr>
+	<% @students.each do |student| %>
+		<tr>
+			<th><%= link_to student.first, student_path(student) %></th>
+			<th><%= student.last %></th>
+			<th><%= student.student_id %></th>
+			<th><%= student.grade_level %></th>
+			<th><%= student.gender %></th>
+			<th><%= student.detention_count %></th>
+			<th><%= student.gpa %></th>
+			<th><%= student.advisor %></th>
+			<th>Something Else</th>
+		</tr>
+	<% end %>
+</table>

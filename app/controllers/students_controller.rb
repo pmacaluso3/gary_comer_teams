@@ -7,6 +7,14 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	def index
+		@students = Student.all
+	end
+
+	def show
+		@student = Student.find_by(id: params[:id])
+	end
+
 	def create
 		split_student_lines = []
 
@@ -38,10 +46,8 @@ class StudentsController < ApplicationController
 				misc_hash[pair[0]] = pair[1]
 			end
 
-			puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #{this_student.first}'s misc_hash is #{misc_hash.inspect}"
-
 			hash.each do |k, v|
-				if this_student.respond_to?(k.downcase)
+				if this_student.respond_to?("#{k.downcase}=")
 					m = this_student.method("#{k.downcase}=")
 					m.call(v)
 				else
@@ -70,7 +76,7 @@ class StudentsController < ApplicationController
 		# 	puts row.inspect
 		# end
 
-		# puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{student_hashes}"
+		puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{student_hashes}"
 
 
 		# puts "*************************** #{student_lines}"
