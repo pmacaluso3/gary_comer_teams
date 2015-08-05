@@ -8,9 +8,8 @@ class StudentsController < ApplicationController
 	end
 
 	def index
-		puts "************************ /students/index got visited"
 		logged_in? do
-			@students = Student.all
+			@students = Student.order(:last_name)
 		end
 		admin? do
 			@admin = true
@@ -28,7 +27,7 @@ class StudentsController < ApplicationController
 			s = Student.find_by(id: params[:student_id])
 			s.advisor = nil
 			s.save
-			@students = Student.all
+			@students = Student.order(:last_name)
 			render "students/index"
 		end
 	end
@@ -39,7 +38,7 @@ class StudentsController < ApplicationController
 			student = Student.find_by(id: params[:student_id])
 			student.advisor = user.last_name
 			student.save
-			@students = Student.all
+			@students = Student.order(:last_name)
 			render "students/index"
 		end
 	end
