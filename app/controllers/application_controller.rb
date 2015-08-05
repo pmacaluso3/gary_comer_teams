@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    puts "********************************** #{User.find_by(id:session[:user_id]).admin}"
     if session[:user_id] && User.find_by(id:session[:user_id]).admin
       yield
     else

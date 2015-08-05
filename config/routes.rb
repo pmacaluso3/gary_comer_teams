@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :students
+  get "/students/:student_id/unassign" => 'students#unassign'
+  get "/students/:student_id/assign" => 'students#assign'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

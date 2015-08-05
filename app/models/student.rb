@@ -6,7 +6,11 @@ class Student < ActiveRecord::Base
 	validates :student_id, {presence:true, uniqueness: true}
 
 	def advisor
-		self.user
+		if self.user
+			self.user.last_name
+		else
+			false
+		end
 	end
 
 	def advisor=(new_advisor_last)
@@ -28,5 +32,19 @@ class Student < ActiveRecord::Base
 
 	def first=(new_first)
 		self.first_name = new_first
+	end
+
+	def name
+		"#{self.first_name} #{self.last_name}"
+	end
+
+	def misc_hash
+		out = {}
+		misc_properties = self.misc.split(",")
+		misc_properties.each do |prop|
+			pair = prop.split(":")
+			out[pair[0]] = pair[1]
+		end
+		out
 	end
 end

@@ -8,7 +8,9 @@ class UsersController < ApplicationController
 
 	# This will later be the method to show all teachers' teams
 	def index
-		redirect_to "/sessions/new"
+		logged_in? do
+			@users = User.order(:last_name)
+		end
 	end
 
 	def create
@@ -32,6 +34,6 @@ class UsersController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(:email, :password)
+		params.require(:user).permit(:email, :password, :first_name, :last_name)
 	end
 end
