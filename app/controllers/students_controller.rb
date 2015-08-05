@@ -22,12 +22,39 @@ class StudentsController < ApplicationController
 			split_student_lines << l.split(/[,+\ +]/).reject{|e|e==""}
 		end
 
+		headers = split_student_lines[0]
+		split_student_lines = split_student_lines[1..-1]
+
+		student_hashes = []
+
+		split_student_lines.each do |line|
+			this_student_hash = {}
+			line.each_with_index do |value, i|
+				this_student_hash[headers[i]] = value
+			end
+			student_hashes << this_student_hash
+		end
+
+		student_hashes.each do |hash|
+			this_student = Student.find_or_create_by(hash[:student_id])
+			hash.each do |k, v|
+				if this_student.respond_to?(k.downcase)
+					m = this_student.method("#{k.downcase}=")
+					m.call(v)
+				else
+
+				end
+			end
+			puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#{this_student.inspect}, gpa: #{this_student.gpa.to_s}"
+		end
+
+
 		# CSV.foreach(filename.path) do |row|
 		# 	puts row.inspect
 		# end
 
-		
-		
+
+
 		puts "*************************** #{student_lines}"
 		puts "*************************** #{split_student_lines}"
 
