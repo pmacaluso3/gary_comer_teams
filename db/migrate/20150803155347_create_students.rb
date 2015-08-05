@@ -4,7 +4,7 @@ class CreateStudents < ActiveRecord::Migration
   		t.string :first_name
   		t.string :last_name
   		t.decimal :gpa, {precision: 8, scale: 2}
-  		t.integer :detentions, default: 0
+  		t.integer :detention_count, default: 0
       t.integer :grade_level
       t.string :gender
       t.string :student_id

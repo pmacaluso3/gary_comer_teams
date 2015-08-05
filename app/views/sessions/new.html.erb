@@ -18,7 +18,7 @@
 	Login
 </h3>
 <%= form_for :session, url: sessions_path do |f| %>
-	<%= f.text_field :username, placeholder: "Username" %>
+	<%= f.text_field :email, placeholder: "Email address" %>
 	<%= f.password_field :password, placeholder: "Password" %>
 	<%= f.submit "Login" %>
 <% end %>
@@ -27,7 +27,7 @@
 	Create an Account
 </h3>
 <%= form_for :user, url: users_path do |f| %>
-	<%= f.text_field :username, placeholder: "Username" %>
+	<%= f.text_field :email, placeholder: "Email address" %>
 	<%= f.password_field :password, placeholder: "Password" %>
 	<%= f.password_field :code, placeholder: "Teacher Code" %>
 	<%= f.submit "Signup" %>

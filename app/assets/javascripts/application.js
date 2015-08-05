@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function() {
+	var token = $("meta[name='csrf-token']").attr("content");
+	$("#new_students_token").attr("value", token)
+})

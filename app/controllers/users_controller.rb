@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	def show
 		logged_in? do
 			@user = User.find_by(id: session[:user_id])
+			@students = @user.students
 		end
 	end
 
@@ -31,6 +32,6 @@ class UsersController < ApplicationController
 
 	private
 	def user_params
-		params.require(:user).permit(:username, :password)
+		params.require(:user).permit(:email, :password)
 	end
 end
