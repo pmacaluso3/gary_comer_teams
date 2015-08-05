@@ -10,10 +10,8 @@ class Student < ActiveRecord::Base
 	end
 
 	def advisor=(new_advisor_last)
-		puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% I CALLED ADVISOR="
 		new_advisor = User.find_by(last_name: new_advisor_last)
 		self.user = new_advisor
-		self.save
 	end
 
 	def last
@@ -22,7 +20,6 @@ class Student < ActiveRecord::Base
 
 	def last=(new_last)
 		self.last_name = new_last
-		self.save
 	end
 
 	def first
@@ -31,6 +28,5 @@ class Student < ActiveRecord::Base
 
 	def first=(new_first)
 		self.first_name = new_first
-		self.save
 	end
 end

@@ -23,15 +23,14 @@ class StudentsController < ApplicationController
 		split_student_lines.each do |line|
 			this_student_hash = {}
 			line.each_with_index do |value, i|
-				this_student_hash[headers[i]] = value
+				this_student_hash[headers[i].downcase] = value
 			end
 			student_hashes << this_student_hash
 		end
 
-		puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{student_hashes}"
 
 		student_hashes.each do |hash|
-			this_student = Student.find_or_create_by(student_id: hash[:student_id])
+			this_student = Student.find_or_create_by(student_id: hash["student_id"])
 			misc_hash = {}
 			misc_properties = this_student.misc.split(",")
 			misc_properties.each do |prop|
@@ -55,7 +54,6 @@ class StudentsController < ApplicationController
 
 			this_student.misc += misc_string
 			this_student.save
-			puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#{this_student.inspect}, gpa: #{this_student.gpa.to_s}"
 		end
 
 		# File.open(filename) do |f|
@@ -70,10 +68,11 @@ class StudentsController < ApplicationController
 		# 	puts row.inspect
 		# end
 
+		# puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{student_hashes}"
 
 
-		puts "*************************** #{student_lines}"
-		puts "*************************** #{split_student_lines}"
+		# puts "*************************** #{student_lines}"
+		# puts "*************************** #{split_student_lines}"
 		@students = Student.all
 		render "students/index"
 	end
