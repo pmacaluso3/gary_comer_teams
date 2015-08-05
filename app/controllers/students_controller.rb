@@ -9,13 +9,6 @@ class StudentsController < ApplicationController
 
 	def create
 		split_student_lines = []
-		# File.open(filename) do |f|
-		# 	student_data = f.read
-		# 	student_lines = student_data.split("\n")
-		# 	student_lines.each do |l|
-		# 		split_student_lines << l.split(/[,+\ +]/).reject{|e|e==""}
-		# 	end
-		# end
 
 		student_lines = student_data.split(/[\r\n]+/)
 		student_lines.each do |l|
@@ -35,19 +28,43 @@ class StudentsController < ApplicationController
 			student_hashes << this_student_hash
 		end
 
+		puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{student_hashes}"
+
 		student_hashes.each do |hash|
-			this_student = Student.find_or_create_by(hash[:student_id])
+			this_student = Student.find_or_create_by(student_id: hash[:student_id])
+			misc_hash = {}
+			misc_properties = this_student.misc.split(",")
+			misc_properties.each do |prop|
+				pair = prop.split(":")
+				misc_hash[pair[0]] = pair[1]
+			end
+
 			hash.each do |k, v|
 				if this_student.respond_to?(k.downcase)
 					m = this_student.method("#{k.downcase}=")
 					m.call(v)
 				else
-
+					misc_hash[k] = v
 				end
 			end
+
+			misc_string = ""
+			misc_hash.each do |k, v|
+				misc_string += "#{k}:#{v},"
+			end
+
+			this_student.misc += misc_string
+			this_student.save
 			puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#{this_student.inspect}, gpa: #{this_student.gpa.to_s}"
 		end
 
+		# File.open(filename) do |f|
+		# 	student_data = f.read
+		# 	student_lines = student_data.split("\n")
+		# 	student_lines.each do |l|
+		# 		split_student_lines << l.split(/[,+\ +]/).reject{|e|e==""}
+		# 	end
+		# end
 
 		# CSV.foreach(filename.path) do |row|
 		# 	puts row.inspect
@@ -57,7 +74,7 @@ class StudentsController < ApplicationController
 
 		puts "*************************** #{student_lines}"
 		puts "*************************** #{split_student_lines}"
-
+		@students = Student.all
 		render "students/index"
 	end
 

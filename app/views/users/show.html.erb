@@ -1,5 +1,5 @@
 <h3>
-	Welcome, <%= @user.username %>!
+	Welcome, <%= "#{@user.name}" %>!
 </h3>
 
 <%= link_to "Logout", controller: "sessions", action: "logout" %>

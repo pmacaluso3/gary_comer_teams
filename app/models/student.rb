@@ -6,11 +6,13 @@ class Student < ActiveRecord::Base
 	validates :student_id, {presence:true, uniqueness: true}
 
 	def advisor
-		self.user_id
+		self.user
 	end
 
-	def advisor=(new_advisor_id)
-		self.user_id = new_advisor_id
+	def advisor=(new_advisor_last)
+		puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% I CALLED ADVISOR="
+		new_advisor = User.find_by(last_name: new_advisor_last)
+		self.user = new_advisor
 		self.save
 	end
 
