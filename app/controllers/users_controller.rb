@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 				@percent_male = @students.select{|s|s.gender == "M"}.length/@students.length.to_f.round(2)*100
 				@percent_female = @students.select{|s|s.gender == "F"}.length/@students.length.to_f.round(2)*100
 			end
+			@yours = true if session[:user_id].to_s == params[:id]
 		end
 	end
 
@@ -17,6 +18,34 @@ class UsersController < ApplicationController
 	def index
 		logged_in? do
 			@users = User.order(:last_name)
+		end
+	end
+
+	def edit
+		logged_in? do
+			@user = User.find_by(id: session[:user_id])
+		end
+	end
+
+	def update
+		logged_in? do
+			if params[:user][:code] != "teacher code"
+				@errors = "Incorrect teacher code"
+				@user = User.find_by(id:session[:user_id])
+				render "/users/edit"
+			else
+				@user = User.find_by(id: session[:user_id])
+				if @user.update(user_params)
+					session[:user_id] = @user.id
+					redirect_to user_path(@user)
+				else
+					@errors = []
+					@user.errors.messages.each do |field, message|
+						@errors << "#{field.capitalize} #{message[0]}."
+					end
+					render "/users/edit"
+				end
+			end
 		end
 	end
 

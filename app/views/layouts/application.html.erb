@@ -18,6 +18,8 @@
 	<%= link_to "View all students", students_path %>
 	<br>
 	<%= link_to "View all advisors", users_path %>
+	<br>
+	<%= link_to "Edit your profile", edit_user_path(session[:user_id]) %>
 <% end %>
 
 <%= yield %>

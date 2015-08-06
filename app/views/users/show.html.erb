@@ -3,9 +3,17 @@
 	<br><%= link_to "Add students", new_student_path %>
 <% end %>
 
-<h4>
-	Students on <% @user.name %>'s team:
-</h4>
+<% if @yours %>
+	<h4>
+		Students on your team:
+	</h4>
+<% else %>
+	<h4>
+		Students on <%= @user.name %>'s team:
+	</h4>
+<% end %>
+
+
 
 <% if !@students.empty? %>
 	<table>
@@ -38,6 +46,6 @@
 		<strong>Percent female:</strong> <%= @percent_female %><br>
 	</p>
 <% else %>
-	You have no students on your team.
+	No students to show!
 <% end %>
 
