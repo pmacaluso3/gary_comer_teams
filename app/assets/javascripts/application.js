@@ -17,6 +17,20 @@
 
 
 $(document).ready(function() {
-	var token = $("meta[name='csrf-token']").attr("content");
-	$("#new_students_token").attr("value", token)
-})
+	// $("textarea").on("click", function() {
+	// 	console.log("clicked it")
+	// })
+	$("textarea").on("click", function() {
+		console.log("clicked it")
+		var token = $("meta[name='csrf-token']").attr("content");
+		$("#new_students_token").attr("value", token)	
+	})
+
+
+
+	// setTimeout(moveToken, 1000);
+	// $("textarea").on("click", function() {
+	// 	console.log("clicked it")
+	// })
+});
+

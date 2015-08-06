@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
 		logged_in? do
 			@students = Student.order(:last_name)
 		end
-		if User.find_by(id: session[:user_id]).admin
+		if User.find_by(id: session[:user_id]) && User.find_by(id: session[:user_id]).admin
 			@admin = true
 		end
 	end

@@ -9,3 +9,11 @@
 	<input type="hidden" id="new_students_token" name="authenticity_token">
 	<input type="submit">
 </form>
+
+
+<script>
+$(document).ready(function() {
+	var token = $("meta[name='csrf-token']").attr("content");
+	$("#new_students_token").attr("value", token)	
+});	
+</script>
