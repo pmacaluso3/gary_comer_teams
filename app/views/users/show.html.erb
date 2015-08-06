@@ -30,6 +30,13 @@
 			</tr>
 		<% end %>
 	</table>
+	<p>
+		<strong>Average GPA:</strong> <%= @avg_gpa %><br>
+		<strong>Total detentions:</strong> <%= @total_detentions %><br>
+		<strong>Average detentions per student:</strong> <%= @avg_detentions %><br>
+		<strong>Percent male:</strong> <%= @percent_male %><br>
+		<strong>Percent female:</strong> <%= @percent_female %><br>
+	</p>
 <% else %>
 	You have no students on your team.
 <% end %>

@@ -14,8 +14,7 @@ class Student < ActiveRecord::Base
 	end
 
 	def advisor=(new_advisor_last)
-		new_advisor = User.find_by(last_name: new_advisor_last)
-		self.user = new_advisor
+		self.user =  User.find_by(last_name: new_advisor_last)
 	end
 
 	def last
