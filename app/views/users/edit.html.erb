@@ -1,0 +1,38 @@
+<h1>
+	Edit your information
+</h1>
+
+<% if @errors %>
+	<ul>
+		<% if @errors.class == Array %>
+			<% @errors.each do |error| %>
+				<li><%= error %></li>
+			<% end %>
+		<% else %>
+			<li>
+				<%= @errors %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+
+
+	<%= form_for @user do |f| %>
+		<%= f.text_field :email, placeholder: "Email" %>
+		<%= f.text_field :first_name, placeholder: "First Name" %>
+		<%= f.text_field :last_name, placeholder: "Last Name" %>
+		<%= f.password_field :password, placeholder: "Password" %>
+		<%= f.password_field :code, placeholder: "Teacher Code" %>
+		<%= f.submit "Update" %>
+	<% end %>
+
+
+
+<script>
+// $(document).ready(function() {
+// 	var token = $("meta[name='csrf-token']").attr("content");
+// 	$("#new_students_token").attr("value", token)	
+// });	
+</script>
+
+
