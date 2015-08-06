@@ -20,6 +20,10 @@
 	<%= link_to "View all advisors", users_path %>
 	<br>
 	<%= link_to "Edit your profile", edit_user_path(session[:user_id]) %>
+	<br>
+	The rules are: <% @rules.content.split("&&&").each do |rule| %>
+		<%= rule %><br>
+	<% end %>
 <% end %>
 
 <% admin? do %>
