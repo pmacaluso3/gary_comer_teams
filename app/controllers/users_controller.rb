@@ -3,6 +3,13 @@ class UsersController < ApplicationController
 		logged_in? do
 			@user = User.find_by(id: session[:user_id])
 			@students = @user.students
+			if @students.length > 0
+				@avg_gpa = @students.reduce(0){|acc,s|acc += s.gpa}/@students.length.to_f.round(2)
+				@total_detentions = @students.reduce(0){|acc,s|acc += s.detention_count}.to_f.round(2)
+				@avg_detentions = @total_detentions/@students.length.to_f.round(2)
+				@percent_male = @students.select{|s|s.gender == "M"}.length/@students.length.to_f.round(2)*100
+				@percent_female = @students.select{|s|s.gender == "F"}.length/@students.length.to_f.round(2)*100
+			end
 		end
 	end
 
