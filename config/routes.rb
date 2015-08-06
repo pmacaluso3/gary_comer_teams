@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :students
   get "/students/:student_id/unassign" => 'students#unassign'
   get "/students/:student_id/assign" => 'students#assign'
+  get "/secrets/edit_rules" => 'secrets#edit_rules'
+  get "/secrets/edit_code" => 'secrets#edit_code'
+  post "/secrets/edit_rules" => 'secrets#update_rules'
+  post "/secrets/edit_code" => 'secrets#update_code'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
