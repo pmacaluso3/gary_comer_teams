@@ -24,7 +24,8 @@
 
 <% admin? do %>
 	<br><%= link_to "Add students", new_student_path %>
-	<br><%= link_to
+	<br><%= link_to "Edit teacher code", controller: "secrets", action: "edit_code" %>
+	<br><%= link_to "Edit rules", controller: "secrets", action: "edit_rules" %>
 <% end %>
 
 <%= yield %>
