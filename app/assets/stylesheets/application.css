@@ -45,13 +45,17 @@
 	font-size: 0.8em;
 }
 
+.bar_spacer {
+	height: 1.0em;
+}
+
 .rules {
 	background-color: #2B6B5B;
 	color: white;
 	width: 20%;
 	display: inline-block;
 	float: left;
-	margin: 0.5em 1em 0em 0.25em;
+	margin: 0em 1em 0em 0.25em;
 	padding: 1em;
 	border-radius: 1em;
 	border: 1px solid #eee;
@@ -84,19 +88,4 @@ body {
 	background-color: #EAE880 !important;
 }
 
-.jumbotron_text {
-	font-size: 2em !important;
-	top: 0.5em !important;
-}
 
-.over_container_text {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important	 ;
-}
-
-
-
-
-.jumbotron {
-	background-color: #D4D264 !important;
-	height: 3em;
-}
