@@ -13,3 +13,54 @@
  *= require_tree .
  *= require_self
  */
+.container {
+	text-align: center;
+}
+
+.card_label {
+	font-size: 2em;
+	margin: 0.5em 0em 0.5em 0em;
+}
+
+.card {
+	background-color: #D4D264;
+	/*border: 1px solid black;*/
+	padding: 0.5em !important;
+	width: 40%;
+	margin: auto;
+}
+
+.btn {
+	border: 1px solid black;
+}
+
+.card_field {
+	margin: 0.5em;
+	text-align: center;
+}
+
+.logo {
+	background-color: white !important;
+	padding: 1em 0em 1em 1em;
+}
+
+body {
+	background-color: #EAE880 !important;
+}
+
+.jumbotron_text {
+	font-size: 2em !important;
+	top: 0.5em !important;
+}
+
+.over_container_text {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important	 ;
+}
+
+
+
+
+.jumbotron {
+	background-color: #D4D264 !important;
+	height: 3em;
+}

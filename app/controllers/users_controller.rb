@@ -68,8 +68,23 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# def group_create
+	# 	admin? do
+	# 		split_users_lines = []
+
+	# 		users_lines = users_data.split(/[\r\n]+/)
+	# 		users_lines.each do |l|
+	# 			split_users_lines << l.split(/[,+\ +]/).reject{|e|e==""}
+	# 		end
+	# 	end
+	# end
+
 	private
 	def user_params
 		params.require(:user).permit(:email, :password, :first_name, :last_name)
 	end
+
+	# def users_data
+	# 	params.require(:users).permit(users)		
+	# end
 end

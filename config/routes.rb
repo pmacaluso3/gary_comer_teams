@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/secrets/edit_code" => 'secrets#edit_code'
   post "/secrets/edit_rules" => 'secrets#update_rules'
   post "/secrets/edit_code" => 'secrets#update_code'
+  post "/usersgroup" => 'users#group_create'
 
 
   # Example of regular route:

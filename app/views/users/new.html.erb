@@ -1,0 +1,17 @@
+<h4>
+	Add new users
+</h4>
+
+<form action="/usersgroup" method="post">
+	<textarea name="users[users]"></textarea>
+	<input type="hidden" id="new_users_token" name="authenticity_token">
+	<input type="submit">
+</form>
+
+
+<script>
+$(document).ready(function() {
+	var token = $("meta[name='csrf-token']").attr("content");
+	$("#new_users_token").attr("value", token)	
+});	
+</script>
