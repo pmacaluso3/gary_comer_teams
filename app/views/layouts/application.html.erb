@@ -17,30 +17,47 @@
 
 
 <% logged_in? do %>
-	<div class="jumbotron">
-		<span class="jumbotron_text">
-			Welcome, <%= link_to "#{User.find_by(id: session[:user_id]).name}", user_path(User.find_by(id: session[:user_id])) %>!
-		</span>
+	<div class="welcome">
+		Welcome, <%= link_to "#{User.find_by(id: session[:user_id]).name}", user_path(User.find_by(id: session[:user_id])) %>!
 	</div>
 
-	<%= link_to "Logout", controller: "sessions", action: "logout" %>
-	<br>
-	<%= link_to "View all students", students_path %>
-	<br>
-	<%= link_to "View all advisors", users_path %>
-	<br>
-	<%= link_to "Edit your profile", edit_user_path(session[:user_id]) %>
-	<br>
-	The rules are: <% @rules.content.split("&&&").each do |rule| %>
-		<%= rule %><br>
+	<div class="bar">
+		Advisor actions: <%= link_to "Logout", controller: "sessions", action: "logout" %>
+		|
+		<%= link_to "View all students", students_path %>
+		|
+		<%= link_to "View all advisors", users_path %>
+		|
+		<%= link_to "Edit your profile", edit_user_path(session[:user_id]) %>
+		|
+		
 	<% end %>
-<% end %>
+		
+	</div>
 
 <% admin? do %>
-	<br><%= link_to "Add students", new_student_path %>
-	<br><%= link_to "Edit teacher code", controller: "secrets", action: "edit_code" %>
-	<br><%= link_to "Edit rules", controller: "secrets", action: "edit_rules" %>
+	<div class="bar">
+		Admin actions: <%= link_to "Add students", new_student_path %>
+		|
+		<%= link_to "Edit teacher code", controller: "secrets", action: "edit_code" %>
+		|
+		<%= link_to "Edit rules", controller: "secrets", action: "edit_rules" %>
+	</div>
 <% end %>
+
+<% logged_in? do %>
+	<div class="rules">
+		<div class="header">
+			The rules are: 
+		</div>
+		<div class="rules_text">
+			<% @rules.content.split("&&&").each do |rule| %>
+				<%= rule %><br>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
 
 <%= yield %>
 
