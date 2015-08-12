@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
 	def update
 		logged_in? do
-			if params[:user][:code] != Secret.find_by(name: "code")
+			if params[:user][:code] != Secret.find_by(name: "code").content
 				@errors = "Incorrect teacher code"
 				@user = User.find_by(id:session[:user_id])
 				render "/users/edit"
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		if params[:user][:code] != Secret.find_by(name: "code")
+		if params[:user][:code] != Secret.find_by(name: "code").content
 			@errors = "Incorrect teacher code"
 			render "/sessions/new"
 		else
