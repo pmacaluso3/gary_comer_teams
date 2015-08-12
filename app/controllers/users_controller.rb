@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def show
 		logged_in? do
-			@user = User.find_by(id: session[:user_id])
+			@user = User.find_by(id: params[:id])
 			@students = @user.students
 			if @students.length > 0
 				@avg_gpa = @students.reduce(0){|acc,s|acc += s.gpa}/@students.length.to_f.round(2)
