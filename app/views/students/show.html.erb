@@ -57,10 +57,13 @@
 			<% end %>
 		</table>
 	</div>
-	<div class="card_field">
-		<%= link_to "Edit #{@student.first_name}'s info", edit_student_path(@student) %>
-	</div>
-	<div class="card_field">
-		<a href="/students/<%= @student.id %>/destroy">Delete <%= @student.first_name %></a>
-	</div>
+	<% admin? do %>
+		<div class="card_field">
+			<%= link_to "Edit #{@student.first_name}'s info", edit_student_path(@student) %>
+		</div>
+		<div class="card_field">
+			<a href="/students/<%= @student.id %>/destroy">Delete <%= @student.first_name %></a>
+		</div>
+	<% end %>
+
 </div>
