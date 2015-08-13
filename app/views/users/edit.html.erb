@@ -1,30 +1,44 @@
-<h1>
-	Edit your information
-</h1>
 
 <% if @errors %>
-	<ul>
+	<div class="errors">
 		<% if @errors.class == Array %>
 			<% @errors.each do |error| %>
-				<li><%= error %></li>
+				<div class="card_field"><%= error %></div>
 			<% end %>
 		<% else %>
-			<li>
+			<div class="card_field">
 				<%= @errors %>
-			</li>
+			</div>
 		<% end %>
-	</ul>
+	</div>
+	<div class="bar_spacer"></div>
 <% end %>
 
-
+<div class="card">
+	<div class="card_field detailed">
+		Edit your information
+	</div>
 	<%= form_for @user do |f| %>
-		<%= f.text_field :email, placeholder: "Email" %>
-		<%= f.text_field :first_name, placeholder: "First Name" %>
-		<%= f.text_field :last_name, placeholder: "Last Name" %>
-		<%= f.password_field :password, placeholder: "Password" %>
-		<%= f.password_field :code, placeholder: "Teacher Code" %>
-		<%= f.submit "Update" %>
+		<div class="card_field">
+			<%= f.text_field :email, placeholder: "Email" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :first_name, placeholder: "First Name" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :last_name, placeholder: "Last Name" %>
+		</div>
+		<div class="card_field">
+			<%= f.password_field :password, placeholder: "Password" %>
+		</div>
+		<div class="card_field">
+			<%= f.password_field :code, placeholder: "Teacher Code" %>
+		</div>
+		<div class="card_field">
+			<%= f.submit "Update" %>
+		</div>
 	<% end %>
+</div>
 
 
 

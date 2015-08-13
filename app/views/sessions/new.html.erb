@@ -1,71 +1,72 @@
 
 
-
 <% if @errors %>
-	<ul>
+	<div class="errors">
 		<% if @errors.class == Array %>
 			<% @errors.each do |error| %>
-				<li><%= error %></li>
+				<div class="card_field"><%= error %></div>
 			<% end %>
 		<% else %>
-			<li>
+			<div class="card_field">
 				<%= @errors %>
-			</li>
+			</div>
 		<% end %>
-	</ul>
+	</div>
+	<div class="bar_spacer"></div>
 <% end %>
 
 <div class="container">
 	<div class="row">
 		
 		<div class="col-md-6">
-
-			<div class="card_label">
-				Login
-			</div>
-
-			<div class="card">
-				<%= form_for :session, url: sessions_path, html: {:class => 'form-inline'} do |f| %>
-					<div class="card_field">
-						<%= f.text_field :email, placeholder: "Email address" %>
-					</div>
-					<div class="card_field">
-						<%= f.password_field :password, placeholder: "Password" %>
-					</div>
-					<div class="card_field">
-						<%= f.submit "Login", :class => "btn" %>
-					</div>
-				<% end %>
+			<div class="card wide">
+				<div class="card_field detailed">
+					Login
+				</div>
+				<div class="card_field">
+					<%= form_for :session, url: sessions_path, html: {:class => 'form-inline'} do |f| %>
+						<div class="card_field">
+							<%= f.text_field :email, placeholder: "Email address" %>
+						</div>
+						<div class="card_field">
+							<%= f.password_field :password, placeholder: "Password" %>
+						</div>
+						<div class="card_field">
+							<%= f.submit "Login", :class => "btn" %>
+						</div>
+					<% end %>
+				</div>
 			</div>
 		</div>
 
 
 		<div class="col-md-6">
-			<div class="card_label">
-				Create an Account
-			</div>
-
-			<div class="card">
-				<%= form_for :user, url: users_path, html: {:class => 'form-inline'} do |f| %>
-					<div class="card_field">
-						<%= f.text_field :email, placeholder: "Email address" %>
-					</div>
-					<div class="card_field">
-						<%= f.text_field :first_name, placeholder: "First name" %>
-					</div>
-					<div class="card_field">
-						<%= f.text_field :last_name, placeholder: "Last name" %>
-					</div>
-					<div class="card_field">
-						<%= f.password_field :password, placeholder: "Password" %>
-					</div>
-					<div class="card_field">
-						<%= f.password_field :code, placeholder: "Teacher Code" %>
-					</div>
-					<div class="card_field">
-						<%= f.submit "Signup", :class => "btn" %>
-					</div>
-				<% end %>
+			<div class="card wide">
+				<div class="card_field detailed">
+					Create an Account
+				</div>
+				<div class="card_field">
+					<%= form_for :user, url: users_path, html: {:class => 'form-inline'} do |f| %>
+						<div class="card_field">
+							<%= f.text_field :email, placeholder: "Email address" %>
+						</div>
+						<div class="card_field">
+							<%= f.text_field :first_name, placeholder: "First name" %>
+						</div>
+						<div class="card_field">
+							<%= f.text_field :last_name, placeholder: "Last name" %>
+						</div>
+						<div class="card_field">
+							<%= f.password_field :password, placeholder: "Password" %>
+						</div>
+						<div class="card_field">
+							<%= f.password_field :code, placeholder: "Teacher Code" %>
+						</div>
+						<div class="card_field">
+							<%= f.submit "Signup", :class => "btn" %>
+						</div>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
