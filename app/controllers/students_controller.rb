@@ -52,6 +52,8 @@ class StudentsController < ApplicationController
 				split_student_lines << l.split(/[,\ \t]+/).reject{|e|e==""}
 			end
 
+			split_student_lines.reject!{|arr|arr.empty?}
+
 			headers = split_student_lines[0]
 			split_student_lines = split_student_lines[1..-1]
 
