@@ -1,0 +1,46 @@
+<% if @errors %>
+	<div class="errors">
+		<% if @errors.class == Array %>
+			<% @errors.each do |error| %>
+				<div class="card_field"><%= error %></div>
+			<% end %>
+		<% else %>
+			<div class="card_field">
+				<%= @errors %>
+			</div>
+		<% end %>
+	</div>
+	<div class="bar_spacer"></div>
+<% end %>
+
+<div class="card">
+	<div class="card_field detailed">
+		Edit student info
+	</div>
+	<%= form_for @student do |f| %>
+		<div class="card_field">
+			<%= f.text_field :first_name, placeholder: "First Name" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :last_name, placeholder: "Last Name" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :student_id, placeholder: "Student ID" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :grade_level, placeholder: "Grade Level" %>
+		</div>		
+		<div class="card_field">
+			<%= f.text_field :gender, placeholder: "Gender" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :detention_count, placeholder: "Detention Count" %>
+		</div>
+		<div class="card_field">
+			<%= f.text_field :gpa, placeholder: "GPA" %>
+		</div>
+		<div class="card_field">
+			<%= f.submit "Update" %>
+		</div>
+	<% end %>
+</div>
