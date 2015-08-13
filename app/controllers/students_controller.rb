@@ -49,7 +49,7 @@ class StudentsController < ApplicationController
 
 			student_lines = student_data.split(/[\r\n]+/)
 			student_lines.each do |l|
-				split_student_lines << l.split(/[,+\ +]/).reject{|e|e==""}
+				split_student_lines << l.split(/[,\ \t]+/).reject{|e|e==""}
 			end
 
 			headers = split_student_lines[0]
