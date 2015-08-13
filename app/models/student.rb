@@ -37,6 +37,10 @@ class Student < ActiveRecord::Base
 		"#{self.first_name} #{self.last_name}"
 	end
 
+	def gpa
+		self.gpa || 0.0
+	end
+
 	def misc_hash
 		out = {}
 		misc_properties = self.misc.split(",")
