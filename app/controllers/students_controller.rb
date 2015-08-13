@@ -125,9 +125,11 @@ class StudentsController < ApplicationController
 	end
 
 	def delete
-		@student = Student.find_by(id: params[:id])
-		@student.destroy
-		redirect_to "/students"
+		admin? do
+			@student = Student.find_by(id: params[:id])
+			@student.destroy
+			redirect_to "/students"
+		end
 	end
 
 	private
