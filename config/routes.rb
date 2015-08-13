@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :students
+  get "/students/:id/destroy" => 'students#delete'
   get "/students/:student_id/unassign" => 'students#unassign'
   get "/students/:student_id/assign" => 'students#assign'
   get "/secrets/edit_rules" => 'secrets#edit_rules'

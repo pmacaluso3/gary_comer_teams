@@ -103,7 +103,40 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	def edit
+		admin? do
+			@student = Student.find_by(id: params[:id])
+		end
+	end
+
+	def update
+		admin? do
+			@student = Student.find_by(id: params[:id])
+			if @student.update(edit_student_data)
+				redirect_to student_path(@student)
+			else
+				@errors = []
+				@student.errors.messages.each do |field, message|
+					@errors << "#{field.capitalize} #{message[0]}."
+				end
+				render "/students/edit"
+			end
+		end
+	end
+
+	def delete
+		admin? do
+			@student = Student.find_by(id: params[:id])
+			@student.destroy
+			redirect_to "/students"
+		end
+	end
+
 	private
+
+	def edit_student_data
+		params.require(:student).permit(:first_name, :last_name, :student_id, :grade_level, :gender, :detention_count, :gpa)
+	end
 
 	def student_data
 		params.require(:students).permit(:students)[:students]
