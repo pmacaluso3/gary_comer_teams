@@ -91,6 +91,17 @@
 	text-align: center;
 }
 
+.errors {	
+	border-radius: 1em;
+	padding: 0.5em !important;
+	width: 40%;
+	margin: auto;
+	border: solid 1px #E83030;
+	background-color: #F56C6C;
+	font-size: 1.5em;
+	text-align: center;
+}
+
 .head {
 	font-weight: bold
 }
