@@ -31,6 +31,18 @@
 	margin: auto;
 }
 
+.second {
+	margin-top: 1.5em;
+}
+
+.wide {
+	width: 55%;
+}
+
+.detailed {
+	font-size: 2em;
+}
+
 .welcome {
 	width: 100%;
 	border: 1px solid #eee;
@@ -79,6 +91,10 @@
 	text-align: center;
 }
 
+.head {
+	font-weight: bold
+}
+
 .logo {
 	background-color: white !important;
 	padding: 1em 0em 1em 1em;
@@ -93,3 +109,4 @@ td, th {
 	text-align: center;
 	margin: 0em 1em 0em 1em;
 }
+

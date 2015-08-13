@@ -1,42 +1,57 @@
-<h2>
-	All students
-</h2>
 
-<table class="table-hover">
-	<tr>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Student ID</th>
-		<th>Grade Level</th>
-		<th>Gender</th>
-		<th>Detention Count</th>
-		<th>GPA</th>
-		<th>Advisor</th>
-		<% admin? do %>
-			<th>Unassign from Advisor</th>
-		<% end %>
-	</tr>
-	<% @students.each do |student| %>
-		<tr>
-			<td><%= link_to student.first, student_path(student) %></td>
-			<td><%= student.last %></td>
-			<td><%= student.student_id %></td>
-			<td><%= student.grade_level %></td>
-			<td><%= student.gender %></td>
-			<td><%= student.detention_count %></td>
-			<td><%= student.gpa %></td>
-			<td>
-				<% if student.advisor %>
-					<%= student.advisor %>
-				<% else %>
-					<a href="/students/<%= student.id %>/assign">Add to my team</a>				
+<div class="card wide">
+	<div class="card_field detailed">
+		All students
+	</div>
+	<div class="card_field">
+		
+		<table class="table-hover">
+			<tr>
+				<td class=
+				"head">First Name</td>
+				<td class=
+				"head">Last Name</td>
+				<td class=
+				"head">Student ID</td>
+				<td class=
+				"head">Grade Level</td>
+				<td class=
+				"head">Gender</td>
+				<td class=
+				"head">Detention Count</td>
+				<td class=
+				"head">GPA</td>
+				<td class=
+				"head">Advisor</td>
+				<% admin? do %>
+					<td class="head">Unassign from Advisor</td>
 				<% end %>
-			</td>
-			<% admin? do %>
-				<% if student.advisor %>
-					<td><a href="/students/<%= student.id %>/unassign">Unassign</a></td>
-				<% end %>
+			</tr>
+			<% @students.each do |student| %>
+				<tr>
+					<td><%= link_to student.first, student_path(student) %></td>
+					<td><%= student.last %></td>
+					<td><%= student.student_id %></td>
+					<td><%= student.grade_level %></td>
+					<td><%= student.gender %></td>
+					<td><%= student.detention_count %></td>
+					<td><%= student.gpa %></td>
+					<td>
+						<% if student.advisor %>
+							<%= student.advisor %>
+						<% else %>
+							<a href="/students/<%= student.id %>/assign">Add to my team</a>				
+						<% end %>
+					</td>
+					<% admin? do %>
+						<% if student.advisor %>
+							<td><a href="/students/<%= student.id %>/unassign">Unassign</a></td>
+						<% end %>
+					<% end %>
+				</tr>
 			<% end %>
-		</tr>
-	<% end %>
-</table>
+		</table>
+	</div>
+</div>
+
+
