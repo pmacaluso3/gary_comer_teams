@@ -40,12 +40,18 @@
 						<% if student.advisor %>
 							<%= student.advisor %>
 						<% else %>
-							<a href="/students/<%= student.id %>/assign">Add to my team</a>				
+							<div class="button">
+								<a href="/students/<%= student.id %>/assign">Add to my team</a>				
+							</div>
 						<% end %>
 					</td>
 					<% admin? do %>
 						<% if student.advisor %>
-							<td><a href="/students/<%= student.id %>/unassign">Unassign</a></td>
+							<td>
+								<div class="button">
+									<a href="/students/<%= student.id %>/unassign">Unassign</a>
+								</div>
+							</td>
 						<% end %>
 					<% end %>
 				</tr>
